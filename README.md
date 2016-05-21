@@ -1,5 +1,7 @@
 # PHP Reboot Test Driven Development Workshop
 
+Status: Not complete
+
 Hi, I'm Kapil Sharma. This repository represent notes, exercises for TDD Workshop for PHP Reboot.
 
 > Warning: All code and notes are committed in this repository. However if you really wish to learn TDD, please do not to look up the code. Code is there to just help you out in case you are badly stuck and can't find a way out.

@@ -1,0 +1,15 @@
+{
+    "name": "kapilsharma/tddworkshop",
+    "description": "Sample code for Test Driven Development (TDD) workshop.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kapilsharma",
+            "email": "kapil@kapilsharma.info"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.8"
+    }
+}
