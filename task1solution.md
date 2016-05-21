@@ -234,3 +234,92 @@ I guess above changes are pretty clear to read. We are using PSR-4 autoloading. 
 ```
 
 As final step, run `composer install` on terminal for changes to take effect.
+
+## Tests
+
+We are going to do Test Driven Development. This simply means first write test; obviously that will fail but no problem. Let our test fail and then write code to make that test successful. Lets write our first test.
+
+### Test 1: Calculator class exists.
+
+As per our structure, lets create folders to hold our test class.
+
+```
+mkdir tests
+cd tests
+mkdir phpreboot
+cd phpreboot
+mkdir tddworkshop
+cd tddworkshop
+touch CalculatorTest.php
+```
+
+Now open `CalculatorTest.php` and write following code in it.
+
+```php
+<?php
+namespace phpreboot\tdddevelopment;
+
+use phpreboot\tdddevelopment\Calculator;
+
+class CalculatorTest extends \PHPUnit_Framework_TestCase
+{
+    private $calculator;
+
+    public function setUp()
+    {
+        $this->calculator = new Calculator();
+    }
+
+    public function tearDown()
+    {
+        $this->calculator = null;
+    }
+}
+```
+
+Let me explain this code a bit. Since we are using namespace, first line of code must define namespace. Although namespace in tests are not mandatory but it might be handy in few conditions so its always good idea to define namespace.
+
+Next line suggest we want to use class `Calculator`. Obviously that class still do not exist but in TDD, we do not worry about actual status but expected status and we expect that class Calculator must be existing.
+
+Then we have Test class. Name of all PHP Unit test class should end with `Test`. Thus we generally name it as `<classname>Test`. Here we are supposed to test `Calculator` class so obvious name is `CalculatorTest`. Also all test classes must extend `\PHPUnit_Framework_TestCase` so that we can get benefit of methods defined by PHP Unit.
+
+Next we defined a property $calculator and two methods `setUp` and `tearDown`. For testing Calculator class, we must create its instance and we will save that instance in class variable `$calculator`.
+
+At broader level, we can consider `setup` and `tearDoan` as constructor and destructor respectively but not exactly. In PHP Unit, these two methods are called before and after every test. For each test, we need new instance of Calculator so we do it in `setUp` method. Once test is finished, we no longer need Calculator instance so we make it null. Another reason of making it null is, I don't want one test impact another test in any way. Thus making calculator null ensure it.
+
+### Running tests
+
+Now we have PHP Unit installed and a Test written, its time to run tests. But wait, we need some settings. We need to define `phpunit.xml` file. In `phpunit.xml` file, we define some common configuration for PHP Unit like which classes should be tested, how do we want result to be saved/displayed or some initialization tasks. So lets create a file `phpunit.xml` at project root
+
+```bash
+cd ../../..
+touch phpunit.xml
+```
+
+and add following code
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="TDDWorkshop Test Suite">
+            <directory>tests/phpreboot/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/Phpreboot/</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="./log/codeCoverage" charset="UTF-8"
+             yui="true" highlight="true"
+             lowUpperBound="50" highLowerBound="80"/>
+        <log type="testdox-html" target="./log/testdox.html" />
+    </logging>
+</phpunit>
+```
+
