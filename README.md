@@ -14,51 +14,38 @@ Please note, we are not going to make a commercial project. Project for this cou
 
 So we are going to make a command line calculator. We will start with minimal functionality and with time, add other features in our command line calculator.
 
-# Preparing the project
+However we will pick one task at a time. Lets start with task 1
 
-Well, code will be open source project, committed on github.
+# Task 1
 
-You are not supposed to make it open source but I strongly recommend to make it open source and at the end, let me know to check your project. As soon as I get some time, I'll check your code and let you know if there are some improvement points. To tell me about your code, just tweet
-
-> @kapilsharmainfo @phpreboot check TDD workshop code at <Github repo URL>
-
-(and follow me on twitter. LOL. That's not necessary.)
-
-## Install git
-
-If you are not already having git installed, do it. Just google 'install git on <your OS>'. Its easy part so I'm not covering it.
-
-## Create project
-
-Just open terminal and create a folder `tddworkshop` on desired location. We can also initiate a git repository
+We need to make a command line utility to sum zero to two numbers. Command should be
 
 ```bash
-mkdir tddworkshop
-cd tddworkshop
-git init
+php calculator.php sum
+php calculator.php sum 1
+php calculator.php sum 2,3
 ```
 
-This will create a folder `.git`. Also, I do not want to commit few files to git, foe example, I'm using PHP Storm which create a folder `.idea` or Netbeans create `nbproject`. This is important as these folder are necessary locally but not the part of my project. To do that, just create a file `.gitignore` and write name of file/folder, you do not want to commit. My `.gitignore` file has following content
+and its output must 0, 1, and 5 respectively.
 
-```
-.idea
-```
+With problem statement clear, lets make it.
 
-## README file
+Go ahead and check if you can do it.
 
-We create a `README.md` file to explain few things about our project. Simple create `README.md` and add following text in it.
+Once you are done please proceed to [task2](task2.md)
 
-```
-# TDD Workshop
+## Solution
 
-My code to practice test driven developemnt.
-```
+I recommend not to check the solution until you try it yourself. However if you are stuck or want to see how I did it, please go through [Task 1 solution](task1solution.md).
 
-This is in markdown format. Google `markdown` if you want to learn more about markdown.
+# Get your code reviewed
 
-## First commit
+(Optional step)
 
-First commit should be generally a simple file like above readme file and probably `.gitignore` file. I hope you know git and can create new repo on github and commit/push files.
+To get your code reviewed by me, it must be open source project, committed on github.
 
-If you do not know git and github, required steps can be seen at [firstcommit.md](firstcommit.md)
+Once committed, let me know and ask me to review your code. As soon as I get some time, I'll check your code and let you know if there are some improvement points. To tell me about your code, just tweet
 
+> @phpreboot check TDD workshop code at <Github repo URL>
+
+(and follow me on twitter. LOL just kidding, that's not necessary.)
