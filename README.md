@@ -12,7 +12,7 @@ This short course expect you have decent knowledge of PHP. However if you do not
 
 # Project
 
-Please note, we are not going to make a commercial project. Project for this course is just a learning project, that we will make with TDD approach.
+Please note, we are not going to make a commercial project. Project for this course is just a learning project, that we will make with TDD approach. Along with TDD, we will also supposed to follow all latest coding guidelines and standards.
 
 So we are going to make a command line calculator. We will start with minimal functionality and with time, add other features in our command line calculator.
 

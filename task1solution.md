@@ -22,7 +22,7 @@ Before we jump to the code, we have following prerequisites
 
 ## Install git
 
-If you are not already having git installed, do it. Just google 'install git on <your OS>'. Its easy part so I'm not covering it here.
+If you are not already having git installed, do it. Just google 'install git on &lt;your OS&gt;'. Its easy part so I'm not covering it here.
 
 ## Create project
 
@@ -60,7 +60,7 @@ If you do not know git and github, required steps can be seen at [firstcommit.md
 
 ## Composer
 
-Composer is a tool to manage dependencies of your PHP project. We too have few dependencies on third party libraries. So lets first install composer.
+Composer is a tool to manage dependencies of your PHP project. We too have few dependencies on third party libraries; right now PHP unit but might have more in future. So lets first install composer.
 
 ### Installing composer
 
@@ -80,9 +80,9 @@ kapil@PHPReboot:~/dev/github/phpreboot/tddworkshop$ composer init
 
 This command will guide you through creating your composer.json config.
 
-Package name (<vendor>/<name>) [root/tddworkshop]: kapilsharma/tddworkshop
+Package name (&lt;vendor&gt;/&lt;name&gt;) [root/tddworkshop]: kapilsharma/tddworkshop
 Description []: Sample code for Test Driven Development (TDD) workshop.
-Author [kapilsharma <kapil@kapilsharma.info>, n to skip]: 
+Author [kapilsharma &lt;kapil@kapilsharma.info&gt;, n to skip]: 
 Minimum Stability []: 
 Package Type []: 
 License []: MIT
@@ -112,11 +112,11 @@ kapil@PHPReboot:~/dev/github/phpreboot/tddworkshop$
 
 Basically it will ask following question:
 
-**Packagename (vendor/name):** I used `kapilsharma/tddworkshop`. Here `vendor` is company name or or you may use your own name, for me, it was `kapilsharma`. `name` is project name, for me, it was `tddworkshop`.
+**Packagename (vendor/name):** I used `kapilsharma/tddworkshop`. Here `vendor` is company name or you may use your own name, for me, it was `kapilsharma`. `name` is project name, for me, it was `tddworkshop`.
 
 **Description:** This is optional. Just enter some description of project. If you do not want to enter description, simple press `enter`.
 
-**Author:** Obviously you. Format is `name <email>`. For me, it was `kapilsharma <kapil@kapilsharma.info>`.
+**Author:** Obviously you. Format is `name &lt;email&gt;gt;`. For me, it was `kapilsharma &lt;kapil@kapilsharma.info&`.
 
 **Minimum Stability, Package Type, License:** For now, leave these three fields empty by simple press enter.
 
@@ -154,7 +154,7 @@ Latest is best and PHP 5.5 is also near end of security support. So our obvious 
 
 Thus I'm going with PHP Unit 4.8 but I highly recommend others to go with PHP Unit 5.3.
 
-To install PHP Unit 4.8 through composer, run command `composer require --dev phpunit/phpunit:4.8`. Please not `--dev` flag. This tells composer that we need PHP Unit only on development system, not on production. Running this command will install PHP Unit and following lines in composer.json
+To install PHP Unit 4.8 through composer, run command `composer require --dev phpunit/phpunit:4.8`. Please note `--dev` flag. This tells composer that we need PHP Unit only on development system, not on production. Running this command will install PHP Unit and following lines in composer.json
 
 ```json
     "require-dev": {
@@ -162,7 +162,7 @@ To install PHP Unit 4.8 through composer, run command `composer require --dev ph
     }
 ```
 
-It will also create a folder `vendor`. All packages installed by composer goes in vendor directory. Hopefull it will also add `vendor` directory in your `.gitignore` file but if it do not, add `/vendor/` in .gitignore file on separate line. My .gitignore files now looks as follow:
+It will also create a folder `vendor`. All packages installed by composer goes in vendor directory. Also add `/vendor/` in .gitignore file on separate line, if it was not already done with `composer init`. My .gitignore files now looks as follow:
 
 ```
 .idea
@@ -173,3 +173,64 @@ We have PHP Unit installed. We will soon use it, be patient for few more minutes
 
 ## Auto loading.
 
+I hope you are aware with namespaces, auto loading your PHP classes through composer auto loader. If yes, you can skip this section and move to next section.
+
+For others, you must be aware of statements like `include`, `include_once`, `require`, `require_once`. Before PHP 5.3, they were commonly used to include one php file in another php file. With namespaces and PSR-0/PSR-4. PSR-0 and PSR-4 are auto loading standards, defined by [PHP-FIG](http://www.php-fig.org). Composer also create a class named `vendor/autoload.php`. We just need to include that class in our front controller (initial script) and rest classes installed through composer can be automatically loaded.
+
+However there is a problem, classes downloaded through composer can be automatically loaded but what about classes we created? Well composer takes care of them as well. We just need to tell composer where our classes are.
+
+For this project, we will have following structure
+
+```bash
+tddworkshop
+ |
+ |- src
+ |   |
+ |   `- phpreboot (namespace phpreboot)
+ |       |
+ |       `- tddworkshop (namespace phpreboot\tddworkshop)
+ `- tests
+     |
+     `- phpreboot (namespace phpreboot)
+         |
+         `- tddworkshop (namespace phpreboot\tddworkshop)
+```
+
+We need to tell composer that whenever we say namespace `phpreboot`, it should look folder `src/phpreboot` or `tests/phpreboot`. However `tests` folder contains only test so it will be needed only while development, but not on production. Fot this, we need to add following in our `composer.json` file.
+
+```json
+  "autoload": {
+    "psr-4": {"Phpreboot\\": "src/Phpreboot"}
+  },
+  "autoload-dev": {
+    "psr-4": {"Phpreboot\\": "tests/Phpreboot"}
+  },
+```
+
+I guess above changes are pretty clear to read. We are using PSR-4 autoloading. This is enough for now but I recommend reading more about composer. With these changes, my final `composer.json` file looks like following.
+
+```json
+{
+    "name": "kapilsharma/tddworkshop",
+    "description": "Sample code for Test Driven Development (TDD) workshop.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kapilsharma",
+            "email": "kapil@kapilsharma.info"
+        }
+    ],
+    "autoload": {
+      "psr-4": {"Phpreboot\\": "src/Phpreboot"}
+    },
+    "autoload-dev": {
+      "psr-4": {"Phpreboot\\": "tests/Phpreboot"}
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.8"
+    }
+}
+```
+
+As final step, run `composer install` on terminal for changes to take effect.

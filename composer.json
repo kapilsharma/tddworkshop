@@ -8,6 +8,12 @@
             "email": "kapil@kapilsharma.info"
         }
     ],
+    "autoload": {
+      "psr-4": {"Phpreboot\\": "src/Phpreboot"}
+    },
+    "autoload-dev": {
+      "psr-4": {"Phpreboot\\": "tests/Phpreboot"}
+    },
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "4.8"
