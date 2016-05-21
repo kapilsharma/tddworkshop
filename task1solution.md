@@ -303,7 +303,7 @@ and add following code
 
 <phpunit bootstrap="vendor/autoload.php" colors="true">
     <testsuites>
-        <testsuite name="TDDWorkshop Test Suite">
+        <testsuite name="TDDWorkshop">
             <directory>tests/phpreboot/</directory>
         </testsuite>
     </testsuites>
@@ -323,3 +323,12 @@ and add following code
 </phpunit>
 ```
 
+First line is simple xml declaration. Second line define xml root tag and have two attributes. First attribute `bootstrap` tells PHP Unit how to initialize our application for testing purpose. It essentially is a script to initialize all classes and settings needed so that test can execute successfully. In our case, we need to autoload classes as if you remember, we didn't included `Calculator` class in our test but using it. since composer provide us a good autoloader, we are using it to bootstrap our PHP Unit. Second attribute just tell we need colourful output in our terminal, if supported.
+
+Next block `testsuites` define our testsuite. Testsuite is a collection of few test cases. We want to execute all tsts under `tests/phpreboot` folder so we simply added that directory. We also defined name of the testsuite. Here we are having only one test suite but if we have multiple test suites, with name, we can execute only one test suite at a time. This is specially important when we have huge product with several thousands of tests; we will obviously wont like to run them all.
+
+Next block is `filters`. PHP Unit can also create code completion reports. It need xdebug to be installed on the system. If you have xdebug installed, you can actually see code completion reports once you executed tests. Code completion report just tell how much part of your code is covered by PHP Unit tests, which is very handy at times. This block contains `whitelist`. In whitelist, we define classes/folders for which we want to generate code completion report. Lets generate report for our whole src folder, but only for php files.
+
+Next section `logging` defines how do we want to save test reports. IT contains two log tags, one for code coverage report and other testdox. We will check testdox shortly in details.
+
+So we have `phpunit.xml` file. However it is not a good idea to commit `phpunit.xml` on git. First reason, we do not run tests on production so we will not need it there and second, every developer may have different need from PHP unit. If you have huge product with many developers working on several modules and have several thousand test cases, a developer might want to edit phpunit.xml locally to run tests of only his module. Lets follow best practices and make a copy of `phpunit.xml`. Run command `cp phpunit.xml phpunit.xml.dist`. This will create a copy of phpunit.xml with name `phpunit.xml.dist` and we will commit dist file. Also do not forget to add phpunit.xml in `.gitignore` file.
