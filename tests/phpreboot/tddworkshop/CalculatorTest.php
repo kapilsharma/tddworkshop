@@ -7,9 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace phpreboot\tdddevelopment;
+namespace phpreboot\tddworkshop;
 
-use phpreboot\tdddevelopment\Calculator;
+use phpreboot\tddworkshop\Calculator;
 
 class CalculatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,5 +23,12 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         $this->calculator = null;
+    }
+
+    public function testAddReturnsAnInteger()
+    {
+        $result = $this->calculator->add();
+
+        $this->assertInternalType('integer', $result, 'Result of `add` is not an integer.');
     }
 }

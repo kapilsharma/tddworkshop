@@ -257,9 +257,9 @@ Now open `CalculatorTest.php` and write following code in it.
 
 ```php
 <?php
-namespace phpreboot\tdddevelopment;
+namespace phpreboot\tddworkshop;
 
-use phpreboot\tdddevelopment\Calculator;
+use phpreboot\tddworkshop\Calculator;
 
 class CalculatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -274,6 +274,13 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $this->calculator = null;
     }
+
+    public function testAddReturnsAnInteger()
+    {
+        $result = $this->calculator->add();
+
+        $this->assertInternalType('integer', $result, 'Result of `add` is not an integer.');
+    }
 }
 ```
 
@@ -287,7 +294,13 @@ Next we defined a property $calculator and two methods `setUp` and `tearDown`. F
 
 At broader level, we can consider `setup` and `tearDoan` as constructor and destructor respectively but not exactly. In PHP Unit, these two methods are called before and after every test. For each test, we need new instance of Calculator so we do it in `setUp` method. Once test is finished, we no longer need Calculator instance so we make it null. Another reason of making it null is, I don't want one test impact another test in any way. Thus making calculator null ensure it.
 
-### Running tests
+And finally we have a test `testAddReturnsAnInteger`. All test methods must have a `test` prefix (And class have `Test` suffix). Our Calculator class must have an `add` function (first command line argument) which should return an integer. So in our first test, we are testing `add` method must return an integer. You may be little surprised with name of function but we will soon come to that. For now, just believe it is a good name.
+
+First line of test `testAddReturnsAnInteger` is pretty clear, we are calling `add` method without any parameters. Second line starts with `$this->assertInternalType`. php unit provide several `assert***` methods to test different conditions. `assertInternalType`, checks if we have particular primitive type of a variable. Like most `assert***` methods, it take three parameters; expected value, actual value and optional message to display in case test fails. We should write test message carefully as once you have several thousand tests, you should be able to identify exact test which failed. We will discuss more about it shortly.
+
+### PHP Unit configuration
+
+This section is about `phpunit.xml` file. If you are aware about PHP Unit configuration, please skip this section.
 
 Now we have PHP Unit installed and a Test written, its time to run tests. But wait, we need some settings. We need to define `phpunit.xml` file. In `phpunit.xml` file, we define some common configuration for PHP Unit like which classes should be tested, how do we want result to be saved/displayed or some initialization tasks. So lets create a file `phpunit.xml` at project root
 
@@ -332,3 +345,81 @@ Next block is `filters`. PHP Unit can also create code completion reports. It ne
 Next section `logging` defines how do we want to save test reports. IT contains two log tags, one for code coverage report and other testdox. We will check testdox shortly in details.
 
 So we have `phpunit.xml` file. However it is not a good idea to commit `phpunit.xml` on git. First reason, we do not run tests on production so we will not need it there and second, every developer may have different need from PHP unit. If you have huge product with many developers working on several modules and have several thousand test cases, a developer might want to edit phpunit.xml locally to run tests of only his module. Lets follow best practices and make a copy of `phpunit.xml`. Run command `cp phpunit.xml phpunit.xml.dist`. This will create a copy of phpunit.xml with name `phpunit.xml.dist` and we will commit dist file. Also do not forget to add phpunit.xml in `.gitignore` file.
+
+### Running first test.
+
+Now we are all set to run our first test. Open terminal, go to project root and run following command
+
+```bash
+vendor/bin/phpunit
+```
+
+As expected, running this test will give following fatal error
+
+```bash
+PHP Fatal error:  Class 'phpreboot\tddworkshop\Calculator' not found in /home/kapil/dev/github/phpreboot/tddworkshop/tests/phpreboot/tddworkshop/CalculatorTest.php on line 20
+```
+
+We do not have `Calculator class and we are trying to create its instance in `setUp` method. Lets fix this issue and make Calculator class. Run following commands from project root.
+
+```bash
+mkdir src
+cd src
+mkdir phpreboot
+cd phpreboot
+mkdir tddworkshop
+cd tddworkshop
+touch Calculator.php
+```
+
+Now open `Calculator.php` and add following code:
+
+```php
+<?php
+namespace phpreboot\tdddevelopment;
+
+class Calculator
+{
+
+}
+```
+
+We created the class, lets run our test again. We still get fatal error but this time, its different error.
+
+```bash
+PHP Fatal error:  Call to undefined method phpreboot\tddworkshop\Calculator::add() in /home/kapil/dev/github/phpreboot/tddworkshop/tests/phpreboot/tddworkshop/CalculatorTest.php on line 30
+```
+
+Obvious, we are trying to call `add` method on Calculator, which do not exist. Lets make it.
+
+```php
+    public function add()
+    {
+    }
+```
+
+and run test again. This time we do not have any error but our test failed with message
+
+```bash
+There was 1 failure:
+
+1) phpreboot\tddworkshop\CalculatorTest::testAddReturnsAnInteger
+Result of `add` is not an integer.
+Failed asserting that null is of type "integer".
+
+/home/kapil/dev/github/phpreboot/tddworkshop/tests/phpreboot/tddworkshop/CalculatorTest.php:32
+```
+
+We are expecting `add` method should return an integer but it returned nothing (null) and thus our test failed. LEts return `0` for now. Add `return 0;` in the method and run test again.
+
+And finally, we got our test passing.
+
+```bash
+.
+
+Time: 69 ms, Memory: 4.00MB
+
+OK (1 test, 1 assertion)
+```
+
+Before we commit our files, please note, there is a new `log` folder. If you remember, in `phpunit.xml` we asked two reports in `logging` section. However we do not want to commit reports so lets put `log` in `.gitignore` and commit.

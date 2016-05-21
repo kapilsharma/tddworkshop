@@ -9,10 +9,10 @@
         }
     ],
     "autoload": {
-      "psr-4": {"Phpreboot\\": "src/Phpreboot"}
+      "psr-4": {"phpreboot\\": "src/phpreboot"}
     },
     "autoload-dev": {
-      "psr-4": {"Phpreboot\\": "tests/Phpreboot"}
+      "psr-4": {"phpreboot\\": "tests/phpreboot"}
     },
     "require": {},
     "require-dev": {
