@@ -1,5 +1,7 @@
 ## First commit
 
+[Go back](README.md)
+
 First commit should be generally a simple file like above readme file. This is important in case you want to see the diff of your first real commit for code review purpose.
 
 Just go to terminal and type `git status`. You should see only two files; .gitignore and README.md. Run following commands to commit them.
@@ -34,3 +36,5 @@ git push -u origin master
 ```
 
 Second command will ask your github user name and password.
+
+[Go back](README.md)
