@@ -60,5 +60,5 @@ This is in markdown format. Google `markdown` if you want to learn more about ma
 
 First commit should be generally a simple file like above readme file and probably `.gitignore` file. I hope you know git and can create new repo on github and commit/push files.
 
-If you do not know git and github, required steps can be seen at [firstcommit.md]
+If you do not know git and github, required steps can be seen at [firstcommit.md](firstcommit.md)
 
