@@ -58,13 +58,7 @@ This is in markdown format. Google `markdown` if you want to learn more about ma
 
 ## First commit
 
-First commit should be generally a simple file like above readme file. This is important in case you want to see the diff of your first real commit for code review purpose.
+First commit should be generally a simple file like above readme file and probably `.gitignore` file. I hope you know git and can create new repo on github and commit/push files.
 
-Just go to terminal and type `git status`. You should see only two files; .gitignore and README.md. Run following commands to commit them.
-
-```
-git add .gitignore
-git add README.md
-git commit -m "First commit"
-```
+If you do not know git and github, required steps can be seen at [firstcommit.md]
 
