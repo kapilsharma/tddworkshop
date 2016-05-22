@@ -31,4 +31,10 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('integer', $result, 'Result of `add` is not an integer.');
     }
+
+    public function testSumWithoutParameterReturnsZero()
+    {
+        $result = $this->calculator->add();
+        $this->assertSame(0, $result, 'Empty string on add do not return 0');
+    }
 }

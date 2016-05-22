@@ -423,3 +423,7 @@ OK (1 test, 1 assertion)
 ```
 
 Before we commit our files, please note, there is a new `log` folder. If you remember, in `phpunit.xml` we asked two reports in `logging` section. However we do not want to commit reports so lets put `log` in `.gitignore` and commit.
+
+### Further tasks
+
+We still have lot to do in task 1 but this file is growing longer. Please got to [task1solution-2](task1solution-2.md) page for rest of the solution.
