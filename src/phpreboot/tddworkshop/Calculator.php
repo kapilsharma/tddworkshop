@@ -11,8 +11,12 @@ namespace phpreboot\tddworkshop;
 
 class Calculator
 {
-    public function add()
+    public function add($numbers = '')
     {
-        return 0;
+        if (empty($numbers)) {
+            return 0;
+        }
+
+        return intval($numbers);
     }
 }

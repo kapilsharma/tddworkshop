@@ -41,19 +41,14 @@ php calculator.php sum 1
 php calculator.php sum 2,3
 ```
 
-sum method is supposed to accept 0 or 1 parameter. If there is one string parameter, there are two cases:
-
-- Either it is a single number. In that case, we need to return same number.
-- It could also be a string of two numbers, separated by comma. In that case, we need to add these numbers and return its sum.
-
 There is a case when there is no parameter supplied. In that case, we should return 0. We have actually achieved that but lets write a test to confirm that.
 
-## Test sum without parameter returns zero.
+## Test add without parameter returns zero.
 
 To test it, lets add following test at the end of CalculatorTest class.
 
 ```php
-    public function testSumWithoutParameterReturnsZero()
+    public function testAddWithoutParameterReturnsZero()
     {
         $result = $this->calculator->add();
         $this->assertSame(0, $result, 'Empty string on add do not return 0');
@@ -66,4 +61,65 @@ In second line, which is actually a test, we used PHP Unit's `assertSame` method
 
 As prerequisite of this course, I expect you know difference between `==` and `===`. If no, you must first learn a bit more about PHP.
 
-In short, assertSame check value as well as type so ideally two tests for me. Now lets run the test. If you forgot, command is `vendor/bin/phpunit` in project root. Output of test is `OK (2 tests, 2 assertions)`, everything passing. 
+In short, assertSame check value as well as type so ideally two tests for me. Now lets run the test. If you forgot, command is `vendor/bin/phpunit` in project root. Output of test is `OK (2 tests, 2 assertions)`, everything passing.
+
+## Reviewing testdox.html
+
+Before we go ahead, lets first check generated docs. Please open `log/testdoc.html` in a browser (double click it in explorer).
+
+Its output should be like
+
+> # phpreboot\tddworkshop\Calculator
+>
+>   - Add returns an integer
+>   - Add without parameter returns zero
+
+As you can see our HTML report is readable even by non-technical person. If you check closely, message is actually the name of our test function, without `test` prefix. Hope now it is clear why we selected strange names for our test function. Name should be human readable in English but at the same time, it must not be a whole sentence. While naming tests, always think a short and simple line to exactly define your test.
+
+## Next problem
+
+sum method is supposed to accept 0 or 1 parameter. If there is one string parameter, there are two cases:
+
+- Either it is a single number. In that case, we need to return same number.
+- It could also be a string of two numbers, separated by comma. In that case, we need to add these numbers and return its sum.
+
+Lets write test to confirm single parameter with single number returns same number. My test is:
+
+```php
+    public function testAddWithSingleNumberReturnsSameNumber()
+    {
+        $result = $this->calculator->add('3');
+        $this->assertSame(3, $result, 'Add with single number do not returns same number');
+    }
+```
+
+Obviously, our test is supposed to fail
+
+```bash
+There was 1 failure:
+
+1) phpreboot\tddworkshop\CalculatorTest::testAddWithSingleNumberReturnsSameNumber
+Add with single number do not returns same number
+Failed asserting that 0 is identical to 3.
+
+/home/kapil/dev/github/phpreboot/tddworkshop/tests/phpreboot/tddworkshop/CalculatorTest.php:44
+
+FAILURES!
+Tests: 3, Assertions: 3, Failures: 1.
+```
+
+Lets fix calculator to make this test pass. New `add` function is
+
+```php
+    public function add($numbers = '')
+    {
+        if (empty($numbers)) {
+            return 0;
+        }
+
+        return intval($numbers);
+    }
+```
+
+Now to speed up workshop, I'm assuming you can easily understand above PHP code. From here on, I'm not going to explain PHP code. If you have any doubt, please go through PHP manual or stack overflow or if no thing works, tweet your question as `@kapilsharmainfo #TDDWorkshop <question>` and I'll reply ASAP.
+
