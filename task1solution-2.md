@@ -168,3 +168,88 @@ Lets fix it. My new add method is:
 ```
 
 and now test is passing.
+
+## Task 1 done?
+
+Is task 1 done? Well not actually. We need to make a command line script and our Calculator class is not a command line script.
+
+Lets make `calculator.php` at root of the project with following code.
+
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use phpreboot\tddworkshop\Calculator;
+
+$calculator = new Calculator();
+
+if (!isset($argv[1])) {
+    echo 'Operation missing.' . PHP_EOL;
+    exit(0);
+}
+
+switch ($argv[1]) {
+    case 'add':
+        $numbers = isset($argv[2]) ? $argv[2] : '';
+        echo $calculator->add($numbers) . PHP_EOL;
+        break;
+    default:
+        echo 'Please check the operator.' . PHP_EOL;
+}
+```
+
+I guess, above code if familiar for every one. However some of you, using composer for first time, might be surprised with first line, why we need to include `autoload.php`.
+
+If you remember, we added `autoload` section in `composer.json`. Based on that section, composer generates `autoload.php` file, which can load all the classes within given namespace. In our case, we are auto-loading `Calculator.php`.
+
+Now try following commands
+
+```bash
+php calculator.php
+php calculator.php add
+php calculator.php add 1
+php calculator.php add 2,3
+```
+
+So we completed Task 1, right? If you think yes, try following commands
+
+```bash
+php calculator add a
+php calculator add p,q
+php calculator add ,
+```
+
+Answer is always `0`, is it expected? Well no, in that case, we are supposed to give proper error message.
+
+## Happy testing
+
+We are say, till now, we did happy testing that is assuming everything will be normal. Our tests didn't check if our program is behaving correctly in case input is not valid. Lets write first test to check invalid parameter. To be valid, it must
+
+  - be a string.
+  - must contains only numbers and comma.
+ 
+ If input parameter is not valid, our `add` method must throw an exception, `InvalidArgumentException` to be precise. Lets write test for it.
+ 
+ ```php
+     /**
+      * @expectedException \InvalidArgumentException
+      */
+     public function  testAddWithNonStringParameterThrowsException()
+     {
+         $this->calculator->add(5, 'Integer parameter do not throw error');
+     }
+ ```
+ 
+ In this test, we do not have any assertion but just calling `add` method with integer parameter. However we have a test, please note doc-block, which have `@expectedException \InvalidArgumentException`. PHP Unit can read this doc-block and assume this method must throw InvalidArgumentException. If exception is not thrown, test will fail, Lets test it and we have one failed test
+ 
+ ```bash
+ There was 1 failure:
+ 
+ 1) phpreboot\tddworkshop\CalculatorTest::testAddWithNonStringParameterThrowException
+ Failed asserting that exception of type "\InvalidArgumentException" is thrown.
+ 
+ FAILURES!
+ Tests: 5, Assertions: 5, Failures: 1.
+```
+

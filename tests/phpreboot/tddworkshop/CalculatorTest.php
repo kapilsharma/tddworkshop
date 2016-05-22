@@ -1,8 +1,8 @@
 <?php
 /*
- * This file is part of the PHPReboot/Stopwatch package.
+ * This file is part of the phpreboot/tddworkshop package.
  *
- * (c) Kapil Sharma <kapil@phpreboot.com>
+ * (c) Kapil Sharma <kapil@kapilsharma.info>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -49,5 +49,13 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $result = $this->calculator->add('2,4');
 
         $this->assertSame(6, $result, 'Add with two parameter do not returns correct sum');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function  testAddWithNonStringParameterThrowException()
+    {
+        $this->calculator->add(5, 'Integer parameter do not throw error');
     }
 }
