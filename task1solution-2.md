@@ -78,7 +78,7 @@ As you can see our HTML report is readable even by non-technical person. If you 
 
 ## Next problem
 
-sum method is supposed to accept 0 or 1 parameter. If there is one string parameter, there are two cases:
+`sum` method is supposed to accept 0 or 1 parameter. If there is one string parameter, there are two cases:
 
 - Either it is a single number. In that case, we need to return same number.
 - It could also be a string of two numbers, separated by comma. In that case, we need to add these numbers and return its sum.
@@ -123,3 +123,48 @@ Lets fix calculator to make this test pass. New `add` function is
 
 Now to speed up workshop, I'm assuming you can easily understand above PHP code. From here on, I'm not going to explain PHP code. If you have any doubt, please go through PHP manual or stack overflow or if no thing works, tweet your question as `@kapilsharmainfo #TDDWorkshop <question>` and I'll reply ASAP.
 
+## Handling two parameters
+
+Next task, parameters could also be a string of two numbers, separated by comma. In that case, we need to add these numbers and return its sum.
+
+So lets write the test first.
+
+```php
+    public function testAddWithTwoParametersReturnsTheirSum()
+    {
+        $result = $this->calculator->add('2,4');
+
+        $this->assertSame(6, $result, 'Add with two parameter do not returns correct sum');
+    }
+```
+
+obviously, it will fail
+
+```bash
+There was 1 failure:
+
+1) phpreboot\tddworkshop\CalculatorTest::testAddWithTwoParametersReturnsTheirSum
+Add with two parameter do not returns correct sum
+Failed asserting that 2 is identical to 6.
+
+/home/kapil/dev/github/phpreboot/tddworkshop/tests/phpreboot/tddworkshop/CalculatorTest.php:51
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+```
+Lets fix it. My new add method is:
+
+```php
+    public function add($numbers = '')
+    {
+        if (empty($numbers)) {
+            return 0;
+        }
+
+        $numbersArray = explode(",", $numbers);
+
+        return array_sum($numbersArray);
+    }
+```
+
+and now test is passing.

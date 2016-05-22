@@ -17,6 +17,8 @@ class Calculator
             return 0;
         }
 
-        return intval($numbers);
+        $numbersArray = explode(",", $numbers);
+
+        return array_sum($numbersArray);
     }
 }

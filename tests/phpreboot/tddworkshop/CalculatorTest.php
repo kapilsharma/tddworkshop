@@ -43,4 +43,11 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $result = $this->calculator->add('3');
         $this->assertSame(3, $result, 'Add with single number do not returns same number');
     }
+
+    public function testAddWithTwoParametersReturnsTheirSum()
+    {
+        $result = $this->calculator->add('2,4');
+
+        $this->assertSame(6, $result, 'Add with two parameter do not returns correct sum');
+    }
 }
