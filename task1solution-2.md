@@ -229,7 +229,7 @@ We are say, till now, we did happy testing that is assuming everything will be n
   - be a string.
   - must contains only numbers and comma.
  
- If input parameter is not valid, our `add` method must throw an exception, `InvalidArgumentException` to be precise. Lets write test for it.
+If input parameter is not valid, our `add` method must throw an exception, `InvalidArgumentException` to be precise. Lets write test for it.
  
  ```php
      /**
