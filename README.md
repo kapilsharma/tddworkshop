@@ -34,7 +34,7 @@ With problem statement clear, lets make it.
 
 Go ahead and check if you can do it.
 
-Once you are done please proceed to [task2](task2.md)
+Once you are done please proceed to [task2](task2.md).
 
 ## Solution
 

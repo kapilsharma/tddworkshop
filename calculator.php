@@ -19,11 +19,15 @@ if (!isset($argv[1])) {
     exit(0);
 }
 
-switch ($argv[1]) {
-    case 'add':
-        $numbers = isset($argv[2]) ? $argv[2] : '';
-        echo $calculator->add($numbers) . PHP_EOL;
-        break;
-    default:
-        echo 'Please check the operator.' . PHP_EOL;
+try {
+    switch ($argv[1]) {
+        case 'add':
+            $numbers = isset($argv[2]) ? $argv[2] : '';
+            echo $calculator->add($numbers) . PHP_EOL;
+            break;
+        default:
+            echo 'Please check the operator.' . PHP_EOL;
+    }
+} catch (\InvalidArgumentException $e) {
+    echo 'Error: ' . $e->getMessage() . PHP_EOL;
 }

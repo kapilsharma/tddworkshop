@@ -253,3 +253,88 @@ If input parameter is not valid, our `add` method must throw an exception, `Inva
  Tests: 5, Assertions: 5, Failures: 1.
 ```
 
+To make this test pass, lets add a check on out add function.
+
+```php
+    public function add($numbers = '')
+    {
+        if (empty($numbers)) {
+            return 0;
+        }
+
+        if (!is_string($numbers)) {
+            throw new \InvalidArgumentException('Parameters must be a string');
+        }
+
+        $numbersArray = explode(",", $numbers);
+
+        return array_sum($numbersArray);
+    }
+```
+
+Now test will pass. Now try `php calculator.php add 3,a` and answer will be 3, is it Correct? Well no, we must get exception. Lets add a test for that.
+
+```php
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAddWithNonNumbersThrowException()
+    {
+        $this->calculator->add('1,a', 'Invalid parameter do not throw exception');
+    }
+```
+
+Test will obviously fail so lets fix the code.
+
+```php
+    public function add($numbers = '')
+    {
+        if (empty($numbers)) {
+            return 0;
+        }
+
+        if (!is_string($numbers)) {
+            throw new \InvalidArgumentException('Parameters must be a string');
+        }
+
+        $numbersArray = explode(",", $numbers);
+
+        if (array_filter($numbersArray, 'is_numeric') !== $numbersArray) {
+            throw new \InvalidArgumentException('Parameters string must contain numbers');
+        }
+
+        return array_sum($numbersArray);
+    }
+```
+
+Now test will pass. One last thing, try `php calculator.php add 3,a` once again. Ohh, we have an uncaught exception, lets fix `calculator.php` script.
+
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use phpreboot\tddworkshop\Calculator;
+
+$calculator = new Calculator();
+
+if (!isset($argv[1])) {
+    echo 'Operation missing' . PHP_EOL;
+    exit(0);
+}
+
+try {
+    switch ($argv[1]) {
+        case 'add':
+            $numbers = isset($argv[2]) ? $argv[2] : '';
+            echo $calculator->add($numbers) . PHP_EOL;
+            break;
+        default:
+            echo 'Please check the operator.' . PHP_EOL;
+    }
+} catch (\InvalidArgumentException $e) {
+    echo 'Error: ' . $e->getMessage() . PHP_EOL;
+}
+```
+
+Yahoo! We finished our task 1. LEts proceed to [task2](task2.md).
