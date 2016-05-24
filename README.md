@@ -60,16 +60,6 @@ Once you are done please proceed to [task2](task2.md).
 
 I recommend not to check the solution until you try it yourself. However if you are stuck or want to see how I did it, please go through [Task 1 solution](task1solution.md).
 
-# Get your code reviewed
-
-(Optional step)
-
-To get your code reviewed by me, it must be open source project, committed on github.
-
-Once committed, let me know and ask me to review your code. As soon as I get some time, I'll check your code and let you know if there are some improvement points. To tell me about your code, just tweet
-
-> @phpreboot check TDD workshop code at <Github repo URL>
-
 ## Other tasks
 
   - [Task 2](task2.md)
@@ -81,3 +71,13 @@ Once committed, let me know and ask me to review your code. As soon as I get som
   - Task 8 (Will be published soon)
   - Task 9 (Will be published soon)
   - Task 10 (Will be published soon)
+
+# Get your code reviewed
+
+(Optional step)
+
+To get your code reviewed by me, it must be open source project, committed on github.
+
+Once committed, let me know and ask me to review your code. As soon as I get some time, I'll check your code and let you know if there are some improvement points. To tell me about your code, just tweet
+
+> @phpreboot check TDD workshop code at <Github repo URL>
