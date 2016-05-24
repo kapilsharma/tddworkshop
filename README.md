@@ -6,15 +6,21 @@ There are few tasks to be finished following TDD and all coding best practices.
 
 ## Challenge (status: open till Saturday, May 28th, 2016)
 
-You need to finish some tasks following TDD, coding best practices & refactoring as you finishes some tasks.
+You need to finish some tasks. Follow TDD, coding best practices & refactoring as you finish these tasks. Steps should be
+
+  - Make test
+  - Code
+  - Test
+  - Refactor
+  - Test
 
 To get you started, I had completed task 1 and published it. I'll publish remaining tasks on Saturday, May 28th, after TDD workshop in my office.
 
-Workshop in my office is available only to the employees. However if you want to participate, complete the challenge and tweet me your solution on or before May 28th. I'll personally review your code, if it is submitted on or before 28th. To submit, jsut tweet
+Workshop in my office is available only to the employees. However if you want to participate, complete the challenge and tweet me your solution on or before May 28th. I'll review your code and provide feedback, if it is submitted on or before 28th. To submit, just tweet
 
 > @kapilsharmainfo, Check tddworkshop solution at <github url>
 
-# Actual problem
+# Workshop
 
 Hi, I'm Kapil Sharma. This repository represent notes, exercises for TDD Workshop for PHP Reboot.
 
@@ -63,8 +69,6 @@ To get your code reviewed by me, it must be open source project, committed on gi
 Once committed, let me know and ask me to review your code. As soon as I get some time, I'll check your code and let you know if there are some improvement points. To tell me about your code, just tweet
 
 > @phpreboot check TDD workshop code at <Github repo URL>
-
-(and follow me on twitter. LOL just kidding, that's not necessary.)
 
 ## Other tasks
 
