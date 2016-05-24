@@ -69,8 +69,8 @@ Once committed, let me know and ask me to review your code. As soon as I get som
 ## Other tasks
 
   - [Task 2](task2.md)
-  - Task 3 (Will be published soon)
-  - Task 4 (Will be published soon)
+  - [Task 3](task3.md)
+  - [Task 4](task4.md)
   - Task 5 (Will be published soon)
   - Task 6 (Will be published soon)
   - Task 7 (Will be published soon)
