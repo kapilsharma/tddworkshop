@@ -68,9 +68,7 @@ I recommend not to check the solution until you try it yourself. However if you 
   - [Task 5](task5.md)
   - [Task 6](task6.md)
   - [Task 7](task7.md)
-  - Task 8 (Will be published soon)
-  - Task 9 (Will be published soon)
-  - Task 10 (Will be published soon)
+  - [Task 8](task8.md)
 
 # Get your code reviewed
 
