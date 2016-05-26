@@ -1,4 +1,4 @@
-> Warning: This is solution of task 1. I do not recommend to look solution immediately. If you come here by mistake, please go back to [Task1](README.md).
+> Warning: This is solution of task 1. I do not recommend to look solution immediately. If you come here by mistake, please go back to [Task1](task1.md).
 
 # Task 1 Problem statement
 
