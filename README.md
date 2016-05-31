@@ -1,10 +1,8 @@
 # PHP Reboot Test Driven Development Workshop
 
-Status: Answers will be published on Sunday, May 29th, 2016.
-
 There are few tasks to be finished following TDD and all coding best practices.
 
-## Challenge (status: open till Saturday, May 28th, 2016)
+## Challenge
 
 You need to finish some tasks. Follow TDD, coding best practices & refactoring as you finish these tasks. Steps should be
 
