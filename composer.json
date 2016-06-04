@@ -1,21 +1,22 @@
 {
-    "name": "kapilsharma/tddworkshop",
-    "description": "Sample code for Test Driven Development (TDD) workshop.",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "kapilsharma",
-            "email": "kapil@kapilsharma.info"
-        }
-    ],
-    "autoload": {
-      "psr-4": {"phpreboot\\": "src/phpreboot"}
-    },
-    "autoload-dev": {
-      "psr-4": {"phpreboot\\": "tests/phpreboot"}
-    },
-    "require": {},
-    "require-dev": {
-        "phpunit/phpunit": "4.8"
+  "name": "kapilsharma/tddworkshop",
+  "description": "Sample code for Test Driven Development (TDD) workshop.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "kapilsharma",
+      "email": "kapil@kapilsharma.info"
     }
+  ],
+  "autoload": {
+    "psr-4": {"phpreboot\\": "src/phpreboot"}
+  },
+  "autoload-dev": {
+    "psr-4": {"phpreboot\\": "tests/phpreboot"}
+  },
+  "require": {},
+  "require-dev": {
+    "phpunit/php-code-coverage": "^4"
+    "phpunit/phpunit": "5.3"
+  }
 }
