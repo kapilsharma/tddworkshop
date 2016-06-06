@@ -16,7 +16,7 @@
   },
   "require": {},
   "require-dev": {
-    "phpunit/php-code-coverage": "^3.3.0",
+    "phpunit/php-code-coverage": "^4",
     "phpunit/phpunit": "5.3"
   }
 }
