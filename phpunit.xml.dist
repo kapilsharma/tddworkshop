@@ -8,8 +8,8 @@
     </testsuites>
 
     <filter>
-        <whitelist>
-            <directory suffix=".php">src/Phpreboot/</directory>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/phpreboot/</directory>
         </whitelist>
     </filter>
 
